@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: chat-app
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES
+        value: 15m
+      - key: REFRESH_SECRET
+        generateValue: true
+      - key: REFRESH_EXPIRES
+        value: 7d
+      - key: CLIENT_URL
+        sync: false
